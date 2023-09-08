@@ -1,9 +1,30 @@
 version: '3'
 
+networks:
+  inception:
+    name: inception
+
+volumes:
+  site:
+    name: site
+
 services:
   nginx:
     build: ./requirements/nginx
     ports:
       - 443:443
+    depends_on:
+      - wordpress
     restart: always
-    
+    networks:
+      - inception
+    volumes:
+      - site:/var/www/html
+  
+  wordpress:
+    build: ./requirements/wordpress
+    restart: always
+    networks:
+      - inception
+    volumes:
+      - site:/var/www/html

@@ -1,10 +1,8 @@
-FROM debian
+FROM debian:bookworm
 
 # Install dependencies
-RUN apt -y update && apt -y upgrade && apt -y install nginx openssl
-
-# DEV DEPENCENCIES
-RUN apt -y install systemctl nano
+RUN apt-get -y update
+RUN apt-get -y install nginx openssl
 
 # Create folders for ssl settings
 RUN mkdir -p /etc/nginx/ssl
