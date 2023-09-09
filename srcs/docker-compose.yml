@@ -2,29 +2,43 @@ version: '3'
 
 networks:
   inception:
-    name: inception
+    driver: bridge
 
 volumes:
   site:
     name: site
+  db:
+    name: db
 
 services:
   nginx:
+    container_name: nginx
     build: ./requirements/nginx
+    restart: always
     ports:
       - 443:443
     depends_on:
       - wordpress
-    restart: always
     networks:
       - inception
     volumes:
       - site:/var/www/html
-  
+
   wordpress:
+    container_name: wordpress
     build: ./requirements/wordpress
     restart: always
     networks:
       - inception
     volumes:
       - site:/var/www/html
+    ports:
+      - :9000
+
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - inception

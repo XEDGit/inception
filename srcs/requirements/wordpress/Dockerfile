@@ -2,8 +2,9 @@ FROM debian:bookworm
 
 RUN apt-get -y update
 
-# install depencencies
-RUN apt-get install -y php-fpm wget
+RUN apt-get install -y php-fpm php-mysql wget
+
+EXPOSE 9000
 
 COPY setup.sh /setup.sh
 
