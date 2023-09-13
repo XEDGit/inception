@@ -7,7 +7,7 @@ SRC = srcs/docker-compose.yml
 IMGS = srcs$(SEP)wordpress srcs$(SEP)mariadb srcs$(SEP)nginx
 VOLS = db site
 DCDOWN = docker-compose -f $(SRC) down
-DCUP = docker-compose -f $(SRC) up -d
+DCUP = docker-compose -f $(SRC) -d up
 DCCLEAN = docker rmi $(IMGS)
 
 all:
