@@ -2,12 +2,32 @@ FROM debian:bookworm
 
 RUN apt-get -y update
 
-RUN apt-get install -y php-fpm php-mysql wget
+# Dependencies
 
-EXPOSE 9000
+RUN apt-get install -y php-fpm php-mysql curl
+
+COPY www.conf /etc/php/8.2/fpm/pool.d/www.conf
+
+# Install wordpress cli
+
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+
+RUN chmod +x wp-cli.phar
+
+RUN mv wp-cli.phar /usr/local/bin/wp
+
+# Add setup script
 
 COPY setup.sh /setup.sh
 
 RUN chmod +x /setup.sh
+
+WORKDIR /var/www/html
+
+# Add wp-config.php
+
+COPY wp-config.php ./wp-config.php
+
+EXPOSE 9000
 
 ENTRYPOINT [ "/setup.sh" ]

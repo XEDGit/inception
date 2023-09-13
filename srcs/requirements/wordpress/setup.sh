@@ -1,4 +1,8 @@
 #!/bin/bash
-cd /var/www/html && wget https://wordpress.org/latest.tar.gz && tar -xvzf latest.tar.gz && cd wordpress && mv -u * ../ && cd .. && rm -rf wordpress latest.tar.gz
-sed -i 's/listen = \/run\/php\/php8.2-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php/8.2/fpm/pool.d/www.conf
-php-fpm8.2 -F
+if [ "$(ls -A)" == "wp-config.php" ]
+then
+	wp core download --allow-root
+	wp core install --allow-root --url=localhost --title="inception" --admin_user=$WP_USER --admin_password=$WP_PASSWORD --admin_email=lmuzio@student.codam.nl --skip-email
+fi
+echo "Running php..."
+exec php-fpm8.2 -F

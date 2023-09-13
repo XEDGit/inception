@@ -32,8 +32,8 @@ services:
       - inception
     volumes:
       - site:/var/www/html
-    ports:
-      - :9000
+    env_file:
+      - .env
 
   mariadb:
     container_name: mariadb
@@ -42,3 +42,6 @@ services:
       - db:/var/lib/mysql
     networks:
       - inception
+    env_file:
+      - .env
+    restart: always
