@@ -6,9 +6,9 @@ RUN apt-get -y install mariadb-server
 
 RUN mkdir -p /var/log/mysql 
 
-COPY my.cnf /etc/my.cnf
+COPY config/my.cnf /etc/my.cnf
 
-COPY setup.sh /setup.sh
+COPY tools/setup.sh /setup.sh
 
 RUN chmod +x /setup.sh
 

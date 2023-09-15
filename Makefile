@@ -1,22 +1,19 @@
-ifeq ($(shell uname -s),Linux)
+ifeq ($(shell uname -s),Darwin)
     SEP := -
-else ifeq ($(shell uname -s),Darwin)
+else
     SEP := _
 endif
 SRC = srcs/docker-compose.yml
 IMGS = srcs$(SEP)wordpress srcs$(SEP)mariadb srcs$(SEP)nginx
 VOLS = db site
-DCDOWN = docker-compose -f $(SRC) down
-DCUP = docker-compose -f $(SRC) up -d
-DCCLEAN = docker rmi $(IMGS)
 
 all:
-	$(DCUP)
+	docker-compose -f $(SRC) up
 
 clean:
-	$(DCDOWN)
-	$(DCCLEAN)
-
+	docker-compose -f $(SRC) down
+	docker rmi $(IMGS)
+	
 fclean: clean
 	docker volume rm $(VOLS)
 

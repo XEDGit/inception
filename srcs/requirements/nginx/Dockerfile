@@ -14,7 +14,7 @@ RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
        -subj "/C=NL/ST=Amsterdam/L=Amsterdam/O=Codam/OU=lmuzio/CN=lmuzio/"
 
 # Copy config file into container
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY config/default.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 443
 EXPOSE 443
