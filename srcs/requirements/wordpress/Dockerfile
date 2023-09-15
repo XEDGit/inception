@@ -1,12 +1,12 @@
-FROM debian:bookworm
+FROM debian:buster
 
 RUN apt-get -y update
 
 # Dependencies
 
-RUN apt-get install -y php-fpm php-mysql curl
+RUN apt-get install -y php-fpm php-mysql curl netcat
 
-COPY config/www.conf /etc/php/8.2/fpm/pool.d/www.conf
+COPY config/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
 # Install wordpress cli
 
@@ -26,7 +26,7 @@ WORKDIR /var/www/html
 
 # Add wp-config.php
 
-COPY conwp-config.php ./wp-config.php
+COPY config/wp-config.php ./wp-config.php
 
 EXPOSE 9000
 

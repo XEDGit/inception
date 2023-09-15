@@ -28,6 +28,8 @@ services:
     container_name: wordpress
     build: ./requirements/wordpress
     restart: always
+    depends_on:
+      - mariadb
     networks:
       - inception
     volumes:

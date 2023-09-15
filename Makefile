@@ -1,7 +1,7 @@
 ifeq ($(shell uname -s),Darwin)
-    SEP := -
-else
     SEP := _
+else
+    SEP := -
 endif
 SRC = srcs/docker-compose.yml
 IMGS = srcs$(SEP)wordpress srcs$(SEP)mariadb srcs$(SEP)nginx

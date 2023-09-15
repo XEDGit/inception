@@ -1,4 +1,4 @@
-FROM debian:bookworm
+FROM debian:buster
 
 # Install dependencies
 RUN apt-get -y update
