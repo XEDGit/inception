@@ -1,4 +1,4 @@
-ifeq ($(shell uname -s),Darwin)
+ifneq ($(shell uname -s),Darwin)
     SEP := _
 else
     SEP := -
