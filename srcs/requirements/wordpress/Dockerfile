@@ -2,7 +2,9 @@ FROM debian:buster
 
 RUN apt-get -y update
 
-# Dependencies
+RUN apt-get -y install apt-utils
+
+# Install dependencies
 
 RUN apt-get install -y php-fpm php-mysql curl netcat
 

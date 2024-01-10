@@ -2,6 +2,8 @@ FROM debian:buster
 
 # Install dependencies
 RUN apt-get -y update
+RUN apt-get -y install apt-utils
+
 RUN apt-get -y install nginx openssl
 
 # Create folders for ssl settings
