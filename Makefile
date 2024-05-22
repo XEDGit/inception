@@ -1,5 +1,6 @@
 SRC = srcs/docker-compose.yml
-IMGS = $(addprefix srcs-, wordpress mariadb nginx)
+CONTAINERS = wordpress mariadb nginx
+IMGS = $(addprefix srcs-, $(CONTAINERS)) $(addprefix srcs_, $(CONTAINERS))
 VOLS = $(addprefix srcs_, db site)
 
 all:
